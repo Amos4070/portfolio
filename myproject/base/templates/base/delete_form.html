@@ -1,0 +1,21 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="delete-container">
+    <div class="delete-box">
+      <h2>Confirm Deletion</h2>
+      <p>
+        Are you sure you want to delete <strong>"{{ item }}"</strong>?
+      </p>
+
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="button-group">
+          <a href="{% url 'home' %}" class="btn btn-warning">Cancel</a>
+          <button type="submit" class="btn btn-danger">Confirm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

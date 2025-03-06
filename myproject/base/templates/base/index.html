@@ -1,0 +1,166 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Amos Portfolio</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}" />
+  </head>
+  <body>
+    <section class="s1">
+      <div class="container_s">
+        <div class="greeting-wrapper">
+          <h1>Welcome, I'm Musefiu Ojo Amos</h1>
+        </div>
+
+        <div class="intro-wrapper">
+          {% include 'base/navbar.html' %}
+
+          <div class="left-column">
+            <img id="profile_pic" src="{% static 'images/mm.jpeg' %} " />
+            <h5>Software Engineer | AI Enthusiast | Tech Educator</h5>
+
+            {% comment %} <div id="theme-options-wrapper">
+              <div data-mode="light" id="light-mode" class="theme-dot"></div>
+              <div data-mode="blue" id="blue-mode" class="theme-dot"></div>
+              <div data-mode="green" id="green-mode" class="theme-dot"></div>
+              <div data-mode="purple" id="purple-mode" class="theme-dot"></div>
+            </div> {% endcomment %}
+
+            <p id="settings-note">
+              *Building softwares that work*<br />All problems have solvable software solutions.
+            </p>
+          </div>
+
+          <div class="right-column">
+            <div id="preview-shadow">
+              <div id="preview">
+                {% comment %} <div id="corner-tl" class="corner"></div>
+                <div id="corner-tr" class="corner"></div> {% endcomment %}
+                <h3>What I Do</h3>
+                <p>I develop high-quality software solutions for both mobile and web platforms.</p>
+                {% comment %} <div id="corner-br" class="corner"></div>
+                <div id="corner-bl" class="corner"></div> {% endcomment %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s2">
+      <div class="man-container">
+        <div class="about-wrapper">
+          <div class="about-me">
+            <h4 class="more">More about me</h4>
+
+            <p>I am a graduate of Computer Engineering from the Federal University of Technology Akure Nigeria.</p>
+            <p>Highly proficient software engineer dedicated to building high-performance mobile and web applications that solve real-world challenges. With expertise in Flutter, Dart, SQL, Python, JavaScript, C#, Django, HTML, CSS, Google Play Store, AWS(S3), Heroku and AI-driven solutions, I specialize in designing and developing scalable, secure, and user-centric digital products that drive innovation and efficiency.</p>
+
+            <hr />
+
+            <h4 class="topex">TOP EXPERTISE</h4>
+
+            <p>
+              Fullstack developer with primary focus on Mobile and Web Applications:
+              <a id="greeno" target="_blank" href="{% static 'work_nonysc_doc.pdf' %}">Download Resume</a>
+            </p>
+
+            <div class="skills">
+              <ul>
+                <li>Python</li>
+                <li>Django</li>
+                <li>JavaScript</li>
+                <li>SQL</li>
+                <li>Flutter</li>
+                <li>Dart</li>
+                <li>C#</li>
+              </ul>
+
+              <ul>
+                <li>Rest API</li>
+                <li>JSON</li>
+                <li>AWS (S3)</li>
+                <li>Heroku</li>
+                <li>HTML/CSS</li>
+                <li>R</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <img id="social_img" src="{% static 'images/link.png' %}" />
+            <h3>Check my Git...</h3>
+
+            <a target="_blank" href="https://github.com/amos4070">Git: @Amos4070</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s1">
+      <div class="mani-container">
+        <h3 style="text-align: center;">Some of my past projects</h3>
+
+        <div class="post-wrapper">
+          {% for post in posts %}
+            <div>
+              <div class="post">
+                <img class="thumbnail" src="{{ post.thumbnail.url }}" />
+                <div class="post-preview">
+                  <h6 class="post-title">{{ post.headline }}</h6>
+                  <p class="post-intro">{{ post.sub_headline }}</p>
+                  <a href="{% url 'post' post.slug %}">Read More</a> {# ✅ Changed from `id` to `slug` #}
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <p>No project available yet!</p>
+          {% endfor %}
+        </div>
+
+        <p style="text-align: center">
+          <a href="{% url 'posts' %}">View More</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="s2">
+      <div class="mon-container">
+        <a href=""></a>
+        <h3 style="text-align: center;">Get In Touch</h3>
+
+        <form id="contact-form" method="POST" action="{% url 'send_email' %}">
+          {% csrf_token %}
+          <a name="contact"></a>
+
+          <label>Name</label>
+          <input class="input-field" type="text" name="name" required />
+
+          <label>Subject</label>
+          <input class="input-field" type="text" name="subject" required />
+
+          <label>Email</label>
+          <input class="input-field" type="email" name="email" required />
+
+          <label>Message</label>
+          <textarea class="input-field" name="message" required></textarea>
+
+          <button id="submit-btn" type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+    </section>
+
+    {% comment %} <script>
+      var staticPath = "{% static 'css/' %}" // ✅ Define staticPath only in HTML
+    </script>
+
+    <script src="{% static 'js/script.js' %}"></script> {% endcomment %}
+  </body>
+</html>

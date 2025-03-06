@@ -13,10 +13,6 @@
       "dest": "myproject/wsgi.py"
     }
   ],
-  "functions": {
-    "api/*": {
-      "runtime": "python3.8"
-    }
-  },
+ 
   "installCommand": "apt-get update && apt-get install -y python3-dev gcc && pip install -r requirements.txt"
 }

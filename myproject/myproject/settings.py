@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split("")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
 
 
 # Application definition
@@ -97,6 +97,11 @@ DATABASES = {
 }
 
 database_url = os.environ.get("DATABASE_URL")
+
+if database_url:
+    DATABASES["default"] = dj_database_url.parse(database_url)
+else:
+    raise ValueError("DATABASE_URL is not set properly")
 
 DATABASES["default"] = dj_database_url.parse(database_url)
 #"postgresql://amos_portfolio_user:UdABBftGnCIOeAjljltdIW062lKGSkK2@dpg-cv4q5ol2ng1s73bqjl90-a.oregon-postgres.render.com/amos_portfolio"

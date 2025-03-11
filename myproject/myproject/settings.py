@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'storages',
+    'myproject',
 
     
     

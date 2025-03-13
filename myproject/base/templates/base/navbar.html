@@ -11,9 +11,8 @@
   <ul id="navigation">
     <li>
       <a href="{% url 'home' %}#contact" id="create">Contact</a>
-    </li>
-    {% comment %}|{% if request.user.is_authenticated %}
+    </li>|{% if request.user.is_authenticated %}
       <a id="create" href="{% url 'create_post' %}">Create Post</a>
-    {% endif %} {% endcomment %}
+    {% endif %}
   </ul>
 </div>

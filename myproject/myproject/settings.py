@@ -29,15 +29,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECRET_KEY=your_django_secret_key
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-dev') 
-# DEBUG = False
-# # DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-# # DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
-# # ALLOWED_HOSTS = [".vercel.app"]
-# # ALLOWED_HOSTS=.vercel.app,localhost
+DEBUG = True
+# DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+# DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+# ALLOWED_HOSTS = [".vercel.app"]
+# ALLOWED_HOSTS=.vercel.app,localhost
 
-# ALLOWED_HOSTS = ['.railway.app', '.now.sh', '127.0.0.1', 'localhost']
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
+ALLOWED_HOSTS = ['.railway.app', '.now.sh', '127.0.0.1', 'localhost']
+
 # Application definition
 
 INSTALLED_APPS = [

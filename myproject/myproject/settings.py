@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECRET_KEY=your_django_secret_key
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-dev') 
-DEBUG = True
+DEBUG = False
 # DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 # ALLOWED_HOSTS = [".vercel.app"]
@@ -150,7 +150,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'base/static'),  
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "media")  
 

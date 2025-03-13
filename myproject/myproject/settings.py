@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 import dj_database_url
+
 from pathlib import Path
 import cloudinary
 import cloudinary.uploader
@@ -28,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECRET_KEY=your_django_secret_key
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-dev') 
-DEBUG = False
+# DEBUG = True
 # DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 # ALLOWED_HOSTS = [".vercel.app"]
 # ALLOWED_HOSTS=.vercel.app,localhost
 
@@ -102,18 +103,24 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',  # Database name
+#         'USER': 'postgres',  # Database username
+#         'PASSWORD': 'byqJCjCELUblweItXQebeYJlamaCxqkd',  # Database password
+#         'HOST': 'yamanote.proxy.rlwy.net',  # Public host (DO NOT USE `postgres.railway.internal`)
+#         'PORT': '13519',  # Correct PostgreSQL port from DATABASE_PUBLIC_URL
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',  # Database name
-        'USER': 'postgres',  # Database username
-        'PASSWORD': 'byqJCjCELUblweItXQebeYJlamaCxqkd',  # Database password
-        'HOST': 'yamanote.proxy.rlwy.net',  # Public host (DO NOT USE `postgres.railway.internal`)
-        'PORT': '13519',  # Correct PostgreSQL port from DATABASE_PUBLIC_URL
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('postgresql://postgres:byqJCjCELUblweItXQebeYJlamaCxqkd@yamanote.proxy.rlwy.net:13519/railway'),  # Railway provides this
+        conn_max_age=600,
+        ssl_require=True  # Enable SSL for Railway
+    )
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -182,3 +189,7 @@ CKEDITOR_CONFIGS ={
         'width':'100%',
     },
 }
+
+
+
+

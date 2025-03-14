@@ -35,7 +35,7 @@ DEBUG = True
 # ALLOWED_HOSTS = [".vercel.app"]
 # ALLOWED_HOSTS=.vercel.app,localhost
 
-ALLOWED_HOSTS = ['.railway.app', '.now.sh', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -103,18 +103,23 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',  # Database name
+#         'USER': 'postgres',  # Database username
+#         'PASSWORD': 'byqJCjCELUblweItXQebeYJlamaCxqkd',  # Database password
+#         'HOST': 'yamanote.proxy.rlwy.net',  # Public host (DO NOT USE `postgres.railway.internal`)
+#         'PORT': '13519',  # Correct PostgreSQL port from DATABASE_PUBLIC_URL
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',  # Database name
-        'USER': 'postgres',  # Database username
-        'PASSWORD': 'byqJCjCELUblweItXQebeYJlamaCxqkd',  # Database password
-        'HOST': 'yamanote.proxy.rlwy.net',  # Public host (DO NOT USE `postgres.railway.internal`)
-        'PORT': '13519',  # Correct PostgreSQL port from DATABASE_PUBLIC_URL
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

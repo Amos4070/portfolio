@@ -1,11 +1,11 @@
 __pycache__/
 db.sqlite3
 .vscode/
-env/
-*.pyc
-*.pyo
-.vercel
-venv/
-venv/
-venv/
-venv/
+# env/
+# *.pyc
+# *.pyo
+# .vercel
+# venv/
+# venv/
+# venv/
+# venv/
